@@ -75,6 +75,22 @@ class Graph {
 
   depthFirstTraversalIterative(startingVertex) {
     // Code goes here ...
+    //visit node a
+    //iterate through all of its neighbors
+    //when visiting node b, which is a neighbor of a, visit all of b's neighbors before we move on to the rest of a's neighbors
+    let visited = [];
+    visited.push(startingVertex);
+    for(const node of this.adjList[startingVertex]) {
+      for(const subNode of this.adjList[node]) {
+        if(!visited.includes(subNode)){
+          visited.push(subNode);
+        }
+      }
+      if(!visited.includes(node)) {
+        visited.push(node);
+      }
+    }
+    return visited;
   }
 
   depthFirstTraversalRecursive(
