@@ -36,7 +36,7 @@ class Graph {
     //list of edges, go through each array at a time
     //we're going to use the values inside the array as parameters for addEdges
 
-    edges.forEach(subArr => {
+    edges.forEach((subArr) => {
       const src = subArr[0];
       const dest = subArr[1];
       this.addEdges(src, dest);
@@ -51,23 +51,23 @@ class Graph {
     let visited = [];
     visited.push(startingVertex);
     queue.push(startingVertex);
-    while(!queue) {
-    //dequeue the queue
-    let current = queue.shift();
-    //set that removed ele to a var
-    visited.push(current);
+    while (queue.length) {
+      //dequeue the queue
+      //set that removed ele to a var
+      let current = queue.shift();
+      //visited.push(current);
 
-    for(node in this.adjList) {
-      if(!visited.includes(node)){
-        visited.push(node);
-        queue.push(node);
+      for (const node of this.adjList[current]) {
+        if (!visited.includes(node)) {
+          visited.push(node);
+          queue.push(node);
+        }
       }
-    }
-    //add that element to our visited array
-    
-    //loop through all the nodes in our adjList
-    //inside loop, if (node that we're currently iterating through !visited) { push into visited and then queue it}
 
+      //add that element to our visited array
+
+      //loop through all the nodes in our adjList
+      //inside loop, if (node that we're currently iterating through !visited) { push into visited and then queue it}
     }
 
     return visited;
