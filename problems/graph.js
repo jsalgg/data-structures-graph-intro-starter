@@ -78,20 +78,33 @@ class Graph {
     //visit node a
     //iterate through all of its neighbors
     //when visiting node b, which is a neighbor of a, visit all of b's neighbors before we move on to the rest of a's neighbors
-    let visited = [];
-    visited.push(startingVertex);
-    for(const node of this.adjList[startingVertex]) {
-      for(const subNode of this.adjList[node]) {
-        if(!visited.includes(subNode)){
-          visited.push(subNode);
+    const stack = [startingVertex];
+    let visited = new Set();
+    while (stack.length) {
+      //Stack.remove
+      //set that removed ele to a var
+      let current = stack.pop();
+      visited.add(current);
+
+      for (const node of this.adjList[current]) {
+        if (!visited.has(node)) {
+          stack.push(node);
         }
       }
-      if(!visited.includes(node)) {
-        visited.push(node);
-      }
     }
-    return visited;
+    return Array.from(visited);
   }
+
+  /*
+  a: [ 'b', 'c', 'd' ],
+  b: [ 'a', 'c', 'e' ],
+  c: [ 'a', 'b', 'f', 'g' ],
+  d: [ 'a', 'g' ],
+  g: [ 'd', 'c', 'f' ],
+  e: [ 'b' ],
+  f: [ 'c', 'g' ],
+  h: []
+    */
 
   depthFirstTraversalRecursive(
     startingVertex,
