@@ -32,10 +32,45 @@ class Graph {
 
   buildGraph(edges) {
     // Code goes here ...
+    //input is array of arrays
+    //list of edges, go through each array at a time
+    //we're going to use the values inside the array as parameters for addEdges
+
+    edges.forEach(subArr => {
+      const src = subArr[0];
+      const dest = subArr[1];
+      this.addEdges(src, dest);
+    });
+
+    return this.adjList;
   }
 
   breadthFirstTraversal(startingVertex) {
     // Code goes here ...
+    const queue = [];
+    let visited = [];
+    visited.push(startingVertex);
+    queue.push(startingVertex);
+    while(!queue) {
+    //dequeue the queue
+    let current = queue.shift();
+    //set that removed ele to a var
+    visited.push(current);
+
+    for(node in this.adjList) {
+      if(!visited.includes(node)){
+        visited.push(node);
+        queue.push(node);
+      }
+    }
+    //add that element to our visited array
+    
+    //loop through all the nodes in our adjList
+    //inside loop, if (node that we're currently iterating through !visited) { push into visited and then queue it}
+
+    }
+
+    return visited;
   }
 
   depthFirstTraversalIterative(startingVertex) {
