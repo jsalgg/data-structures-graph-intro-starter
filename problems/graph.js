@@ -114,12 +114,13 @@ class Graph {
     // Code goes here ...
 
     visited.add(startingVertex);
-    for(let node of this.adjList[startingVertex]) {
-      if(!visited.has(node)) {
+    for (let node of this.adjList[startingVertex]) {
+      if (!visited.has(node)) {
         this.depthFirstTraversalRecursive(node, visited, vertices);
       }
     }
-    console.log(Array.from(visited));
+    return Array.from(visited);
+    //return [];
   }
 }
 
